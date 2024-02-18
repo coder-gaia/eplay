@@ -6,6 +6,7 @@ export type Props = {
   title: string
   bgColor: 'grey' | 'black'
   games: Game[]
+  id?: string
 }
 export const priceFormater = (price = 0) => {
   return new Intl.NumberFormat('en-US', {
@@ -14,7 +15,7 @@ export const priceFormater = (price = 0) => {
   }).format(price)
 }
 
-const ProductsList = ({ title, bgColor, games }: Props) => {
+const ProductsList = ({ title, bgColor, games, id }: Props) => {
   const getGameTags = (game: Game) => {
     const tags = []
 
@@ -33,7 +34,7 @@ const ProductsList = ({ title, bgColor, games }: Props) => {
   }
 
   return (
-    <Container bgColor={bgColor}>
+    <Container bgColor={bgColor} id={id}>
       <div className="container">
         <Title>{title}</Title>
         <List>

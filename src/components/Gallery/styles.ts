@@ -3,6 +3,8 @@ import { colors } from '../../styles'
 
 export const Items = styled.ul`
   display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 `
 export const Action = styled.div`
   width: 100%;
@@ -18,7 +20,6 @@ export const Action = styled.div`
   transition: opacity 0.4s ease;
 `
 export const Item = styled.li`
-  margin-right: 16px;
   position: relative;
 
   > img {

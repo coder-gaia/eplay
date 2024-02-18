@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { TagContainer } from '../Tag/styles'
+import { colors } from '../../styles'
 
 export const Image = styled.div`
   display: block;
@@ -23,6 +24,11 @@ export const Image = styled.div`
   ${TagContainer} {
     position: absolute;
     top: 32px;
+
+    &:hover {
+      background-color: ${colors.black};
+      transition: 0.4s ease;
+    }
   }
 
   &::after {

@@ -1,19 +1,12 @@
 import { Image, Prices, Title } from './styles'
 import Tag from '../Tag'
-import { useEffect, useState } from 'react'
-import { Game } from '../../Pages/Home'
 import { priceFormater } from '../ProductsList'
 import { Link } from 'react-router-dom'
 import Button from '../Button'
+import { useGetFeaturedGameQuery } from '../../services/Api'
 
 const Banner = () => {
-  const [game, setGame] = useState<Game>()
-
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/eplay/destaque').then((res) =>
-      res.json().then((res) => setGame(res))
-    )
-  }, [])
+  const { data: game, isLoading } = useGetFeaturedGameQuery()
 
   if (!game) {
     return <h3>Loading</h3>
@@ -23,7 +16,7 @@ const Banner = () => {
     <>
       <Image style={{ backgroundImage: `url(${game?.media.cover})` }}>
         <div className="container">
-          <Tag size="big">Today&apos;s highlight</Tag>
+          <Tag size="big">Today&apos;s feature</Tag>
           <div>
             <Title>{game.name}</Title>
             <Prices>
