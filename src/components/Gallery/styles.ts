@@ -5,6 +5,7 @@ export const Items = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  cursor: pointer;
 `
 export const Action = styled.div`
   width: 100%;
@@ -21,6 +22,7 @@ export const Action = styled.div`
 `
 export const Item = styled.li`
   position: relative;
+  cursor: zoom-in;
 
   > img {
     border: 2px solid ${colors.white};
@@ -72,6 +74,12 @@ export const ModalContent = styled.div`
     justify-content: space-between;
     margin-bottom: 24px;
     align-items: center;
+
+    img {
+      height: 16px;
+      width: 16px;
+      cursor: pointer;
+    }
 
     h4 {
       font-size: 18px;

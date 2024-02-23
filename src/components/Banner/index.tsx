@@ -1,29 +1,32 @@
-import { Image, Prices, Title } from './styles'
-import Tag from '../Tag'
-import { priceFormater } from '../ProductsList'
 import { Link } from 'react-router-dom'
+
+import * as S from './styles'
+import Tag from '../Tag'
 import Button from '../Button'
+import Loader from '../Loader'
+
 import { useGetFeaturedGameQuery } from '../../services/Api'
+import ParseToUsd from '../../utils'
 
 const Banner = () => {
-  const { data: game, isLoading } = useGetFeaturedGameQuery()
+  const { data: game } = useGetFeaturedGameQuery()
 
   if (!game) {
-    return <h3>Loading</h3>
+    return <Loader />
   }
 
   return (
     <>
-      <Image style={{ backgroundImage: `url(${game?.media.cover})` }}>
+      <S.Image style={{ backgroundImage: `url(${game?.media.cover})` }}>
         <div className="container">
           <Tag size="big">Today&apos;s feature</Tag>
           <div>
-            <Title>{game.name}</Title>
-            <Prices>
-              From <span>${priceFormater(game.prices.old)}</span>
+            <S.Title>{game.name}</S.Title>
+            <S.Prices>
+              From <span>{ParseToUsd(game.prices.old)}</span>
               <br />
-              To only ${priceFormater(game.prices.current)}
-            </Prices>
+              To only {ParseToUsd(game.prices.current)}
+            </S.Prices>
           </div>
           <Link to={`/product/${game.id}`}>
             <Button type="button" title="click here to obtain">
@@ -31,7 +34,7 @@ const Banner = () => {
             </Button>
           </Link>
         </div>
-      </Image>
+      </S.Image>
     </>
   )
 }

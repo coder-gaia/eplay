@@ -1,10 +1,9 @@
-import { Game } from '../../Pages/Home'
 import Button from '../Button'
 import Tag from '../Tag'
 import { Banner, Infos } from './styles'
-import { priceFormater } from '../ProductsList'
 import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
+import ParseToUsd from '../../utils'
 
 type Props = {
   game: Game
@@ -30,11 +29,11 @@ const Hero = ({ game }: Props) => {
             <h2>{game.name}</h2>
             <p>
               {game.prices.discount && (
-                <span>From {priceFormater(game.prices.old)}</span>
+                <span>From {ParseToUsd(game.prices.old)}</span>
               )}
               <br />
               {game.prices.current && (
-                <>For {priceFormater(game.prices.current)}</>
+                <>For {ParseToUsd(game.prices.current)}</>
               )}
             </p>
             {game.prices.current && (
